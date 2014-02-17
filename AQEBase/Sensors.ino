@@ -84,22 +84,19 @@ void postSensorData(){
   stash.print(F("\"}}]}"));
  
   stash.save();
-  
+
   Serial.println(F("Preparing stash"));  
-  Stash::prepare(PSTR("PUT http://$F/v2/feeds/$E.json HTTP/1.0" "\r\n"
+  Stash::prepare(PSTR("POST FzZS6YHHTY HTTP/1.0" "\r\n"
     "Host: $F" "\r\n"
-    "X-ApiKey: $E" "\r\n"
+    "Content-Type: application/json" "\r\n"
     "Content-Length: $D" "\r\n"
     "\r\n"
     "$H"),
-  website, 
-  (const void *) FEED_ID_EEPROM_ADDRESS, 
-  website, 
-  (const void *) API_KEY_EEPROM_ADDRESS, 
+  website,
   stash.size(), 
   sd);
 
-  Serial.println(F("Sending data to Cosm"));
+  Serial.println(F("Sending data to inductor"));
   
   tcp_session = ether.tcpSend();  
   Serial.println(F("Data sent"));  
@@ -118,6 +115,7 @@ void checkCosmReply(){
   const char *reply = ether.tcpReply(tcp_session);
   if(reply != 0){
     Serial.println(F(">>> RESPONSE RECEIVED ---"));
+    Serial.println(reply);
     markCosmResponse();
   }  
   

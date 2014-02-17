@@ -339,7 +339,7 @@ uint8_t EtherCard::gwip[4];   // gateway
 uint8_t EtherCard::dhcpip[4]; // dhcp server
 uint8_t EtherCard::dnsip[4];  // dns server
 uint8_t EtherCard::hisip[4];  // dns result
-uint16_t EtherCard::hisport = 80; // tcp port to browse to
+uint16_t EtherCard::hisport = 8081; // tcp port to browse to
 bool EtherCard::using_dhcp = false;
 bool EtherCard::persist_tcp_connection = false;
 
